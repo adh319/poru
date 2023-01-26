@@ -31,6 +31,8 @@ class Player extends EventEmitter {
     this.loop = "NONE";
 
     this.position = 0;
+    
+    this.volume = 100;
 
     this.ping = 0;
 
@@ -119,11 +121,14 @@ class Player extends EventEmitter {
     if (isNaN(volume))
       throw new RangeError("Volume level must be a number.");
  
-      volume = Math.min(5, Math.max(0, volume));
-      this.filters.volume = volume;
-      this.filters.updateFilters();
-
-      return this; }
+      this.volume = volume;
+    this.node.send({
+      op: "volume",
+      guildId: this.guildId,
+      volume: this.volume,
+    });
+    return this;
+  }
 
   setLoop(mode) {
     if (!mode)
@@ -257,7 +262,7 @@ class Player extends EventEmitter {
     }
   }
 
-  async autoplay(option = false) {
+  async autoplay(option = false, requester) {
     if (!option) return false;
     try {
       let data = `https://www.youtube.com/watch?v=${this.previousTrack.info.identifier || this.currentTrack.info.identifier
@@ -272,6 +277,7 @@ class Player extends EventEmitter {
       if (!response ||!response.tracks ||["LOAD_FAILED", "NO_MATCHES"].includes(response.loadType)) return this.stop();
 
       let track =response.tracks[Math.floor(Math.random() * Math.floor(response.tracks.length))];
+      track.info.requester = requester;
       this.queue.push(track);
       this.play();
 
