@@ -9,8 +9,6 @@ class Player extends EventEmitter {
     this.poru = poru;
 
     this.queue = new Queue();
-    
-    this.data = new Map();
 
     this.node = node;
 
