@@ -18,8 +18,7 @@ class Filters {
     timescale;
     constructor(player, options) {
         this.player = player;
-        (this.volume = 1.0),
-            (this.equalizer = []);
+        (this.volume = 1.0), (this.equalizer = []);
         this.karaoke = options?.karaoke || null;
         this.timescale = options?.timescale || null;
         this.tremolo = options?.tremolo || null;
@@ -41,10 +40,10 @@ class Filters {
         return this;
     }
     /**
-        * Change the karaoke Options applied to the currently playing track
-        * @param karaoke An object that conforms to the KaraokeOptions type that defines a range of frequencies to mute
-        * @returns The current filter instance
-        */
+     * Change the karaoke Options applied to the currently playing track
+     * @param karaoke An object that conforms to the KaraokeOptions type that defines a range of frequencies to mute
+     * @returns The current filter instance
+     */
     setKaraoke(karaoke) {
         this.karaoke = karaoke || null;
         this.updateFilters();
@@ -134,7 +133,9 @@ class Filters {
      * @returns
      */
     setFilters(options) {
-        this.player.filters = this.player.poru.options.customFilter ? new this.player.poru.options.customFilter(this, options) : new Filters(this.player, options);
+        this.player.filters = this.player.poru.options.customFilter
+            ? new this.player.poru.options.customFilter(this, options)
+            : new Filters(this.player, options);
         this.updateFilters();
         return this;
     }
@@ -143,7 +144,9 @@ class Filters {
      * @returns The current filters applied to the currently playing track
      */
     clearFilters() {
-        this.player.filters = this.player.poru.options.customFilter ? new this.player.poru.options.customFilter(this.player) : new Filters(this.player);
+        this.player.filters = this.player.poru.options.customFilter
+            ? new this.player.poru.options.customFilter(this.player)
+            : new Filters(this.player);
         this.updateFilters();
         return this;
     }
@@ -157,9 +160,18 @@ class Filters {
             guildId: this.player.guildId,
             data: {
                 filters: {
-                    volume, equalizer, karaoke, timescale, tremolo, vibrato, rotation, distortion, channelMix, lowPass,
-                }
-            }
+                    volume,
+                    equalizer,
+                    karaoke,
+                    timescale,
+                    tremolo,
+                    vibrato,
+                    rotation,
+                    distortion,
+                    channelMix,
+                    lowPass,
+                },
+            },
         });
         return this;
     }

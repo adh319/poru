@@ -32,12 +32,14 @@ class customFilter extends Filters_1.Filters {
         if (!this.player)
             return;
         if (val < 0 && val > 6)
-            throw Error('bassboost value must be between 0 to 5');
+            throw Error("bassboost value must be between 0 to 5");
         this.bassboost = val;
         let num = (val - 1) * (1.25 / 9) - 0.25;
-        this.setEqualizer(Array(13).fill(0).map((n, i) => ({
+        this.setEqualizer(Array(13)
+            .fill(0)
+            .map((n, i) => ({
             band: i,
-            gain: num
+            gain: num,
         })));
         return this;
     }

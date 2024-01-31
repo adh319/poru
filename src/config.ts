@@ -1,4 +1,4 @@
 export enum Config {
-    version = 4,
-    clientName = "Poru"
-} 
+    version = 5,
+    clientName = "Poru",
+}

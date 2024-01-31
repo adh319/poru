@@ -9,8 +9,7 @@ class Track {
     userData;
     constructor(data, requester) {
         this.track = data.encoded;
-        this.pluginInfo = data.pluginInfo,
-            this.userData = data.userData;
+        (this.pluginInfo = data.pluginInfo), (this.userData = data.userData);
         this.info = {
             identifier: data.info.identifier,
             isSeekable: data.info.isSeekable,
@@ -20,16 +19,19 @@ class Track {
             sourceName: data.info.sourceName,
             title: data.info.title,
             uri: data.info.uri,
+            image: data.info.artworkUrl || null,
             artworkUrl: data.info.artworkUrl || null,
             isrc: data.info.isrc,
-            requester
+            requester,
         };
     }
     async resolve(poru) {
-        const query = [this.info.author, this.info.title]
-            .filter((x) => !!x)
-            .join(" - ");
-        const result = await poru.resolve({ query, source: poru.options.defaultPlatform || "ytsearch", requester: this.info.requester });
+        const query = [this.info.author, this.info.title].filter((x) => !!x).join(" - ");
+        const result = await poru.resolve({
+            query,
+            source: poru.options.defaultPlatform || "ytsearch",
+            requester: this.info.requester,
+        });
         if (!result || !result.tracks.length)
             return;
         if (this.info.author) {

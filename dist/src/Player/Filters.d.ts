@@ -165,10 +165,10 @@ export declare class Filters {
      */
     setEqualizer(bands: Band[]): Filters;
     /**
-        * Change the karaoke Options applied to the currently playing track
-        * @param karaoke An object that conforms to the KaraokeOptions type that defines a range of frequencies to mute
-        * @returns The current filter instance
-        */
+     * Change the karaoke Options applied to the currently playing track
+     * @param karaoke An object that conforms to the KaraokeOptions type that defines a range of frequencies to mute
+     * @returns The current filter instance
+     */
     setKaraoke(karaoke?: karaokeOptions): Filters;
     /**
      * Change the timescale Options applied to the currently playing track

@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Connection = void 0;
 /**
-  * The connection class
-  * @class
-  * @classdesc The connection class
-  * @param {Player} player The player class
-  * @hideconstructor
-  *
+ * The connection class
+ * @class
+ * @classdesc The connection class
+ * @param {Player} player The player class
+ * @hideconstructor
+ *
  */
 class Connection {
     player;
@@ -41,8 +41,7 @@ class Connection {
             throw new Error("NO Session id found");
         this.voice.endpoint = data.endpoint;
         this.voice.token = data.token;
-        this.region =
-            data.endpoint.split(".").shift()?.replace(/[0-9]/g, "") || null;
+        this.region = data.endpoint.split(".").shift()?.replace(/[0-9]/g, "") || null;
         this.player.node.rest.updatePlayer({
             guildId: this.player.guildId,
             data: { voice: this.voice },
@@ -55,9 +54,7 @@ class Connection {
      */
     setStateUpdate(data) {
         const { session_id, channel_id, self_deaf, self_mute } = data;
-        if (this.player.voiceChannel &&
-            channel_id &&
-            this.player.voiceChannel !== channel_id) {
+        if (this.player.voiceChannel && channel_id && this.player.voiceChannel !== channel_id) {
             this.player.voiceChannel = channel_id;
         }
         this.self_deaf = self_deaf;

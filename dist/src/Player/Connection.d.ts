@@ -5,12 +5,12 @@ export interface IVoiceServer {
     endpoint: string;
 }
 /**
-  * The connection class
-  * @class
-  * @classdesc The connection class
-  * @param {Player} player The player class
-  * @hideconstructor
-  *
+ * The connection class
+ * @class
+ * @classdesc The connection class
+ * @param {Player} player The player class
+ * @hideconstructor
+ *
  */
 export declare class Connection {
     player: Player;

@@ -147,12 +147,8 @@ class Poru extends events_1.EventEmitter {
         return [...this.nodes.values()]
             .filter((node) => node.isConnected && node.regions?.includes(region?.toLowerCase()))
             .sort((a, b) => {
-            const aLoad = a.stats.cpu
-                ? (a.stats.cpu.systemLoad / a.stats.cpu.cores) * 100
-                : 0;
-            const bLoad = b.stats.cpu
-                ? (b.stats.cpu.systemLoad / b.stats.cpu.cores) * 100
-                : 0;
+            const aLoad = a.stats.cpu ? (a.stats.cpu.systemLoad / a.stats.cpu.cores) * 100 : 0;
+            const bLoad = b.stats.cpu ? (b.stats.cpu.systemLoad / b.stats.cpu.cores) * 100 : 0;
             return aLoad - bLoad;
         });
     }
@@ -227,9 +223,7 @@ class Poru extends events_1.EventEmitter {
      * Get a least used node from poru instance
      */
     get leastUsedNodes() {
-        return [...this.nodes.values()]
-            .filter((node) => node.isConnected)
-            .sort((a, b) => a.penalties - b.penalties);
+        return [...this.nodes.values()].filter((node) => node.isConnected).sort((a, b) => a.penalties - b.penalties);
     }
     /**
      * Resolve a track from poru instance
@@ -294,13 +288,13 @@ class Poru extends events_1.EventEmitter {
         return await node.rest.get(`/v4/stats`);
     }
     /* Temp removed
-  
-  async getLavalinkVersion(name:string){
-    let node = this.nodes.get(name)
-    return await node.rest.get(`/version`)
-  
-  }
-  */
+
+async getLavalinkVersion(name:string){
+  let node = this.nodes.get(name)
+  return await node.rest.get(`/version`)
+
+}
+*/
     /**
      * Get a player from poru instance
      * @param guildId Guild ID

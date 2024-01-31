@@ -43,9 +43,9 @@ export declare class Player extends EventEmitter {
      */
     play(): Promise<void>;
     /**
-      * Resolve a track
-      * @param {Track} track - Only for personal use
-      */
+     * Resolve a track
+     * @param {Track} track - Only for personal use
+     */
     private resolveTrack;
     /**
      *

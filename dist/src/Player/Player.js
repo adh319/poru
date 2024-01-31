@@ -57,9 +57,7 @@ class Player extends events_1.EventEmitter {
         this.data = {};
         this.poru.emit("playerCreate", this);
         this.on("playerUpdate", (packet) => {
-            (this.isConnected = packet.state.connected),
-                (this.position = packet.state.position),
-                (this.ping = packet.state.ping);
+            (this.isConnected = packet.state.connected), (this.position = packet.state.position), (this.ping = packet.state.ping);
             this.timestamp = packet.state.time;
             //this event will be useful for creating web player
             this.poru.emit("playerUpdate", this);
@@ -91,14 +89,16 @@ class Player extends events_1.EventEmitter {
         }
     }
     /**
-      * Resolve a track
-      * @param {Track} track - Only for personal use
-      */
+     * Resolve a track
+     * @param {Track} track - Only for personal use
+     */
     async resolveTrack(track) {
-        const query = [track.info?.author, track.info?.title]
-            .filter((x) => !!x)
-            .join(" - ");
-        const result = await this.resolve({ query, source: this.poru.options.defaultPlatform || "ytsearch", requester: track.info?.requester });
+        const query = [track.info?.author, track.info?.title].filter((x) => !!x).join(" - ");
+        const result = await this.resolve({
+            query,
+            source: this.poru.options.defaultPlatform || "ytsearch",
+            requester: track.info?.requester,
+        });
         if (!result || !result.tracks.length)
             return;
         if (track.info?.author) {
@@ -340,9 +340,7 @@ class Player extends events_1.EventEmitter {
                 requester,
                 source: this.poru.options.defaultPlatform || "ytmsearch",
             });
-            if (!response ||
-                !response.tracks ||
-                ["LOAD_FAILED", "NO_MATCHES"].includes(response.loadType))
+            if (!response || !response.tracks || ["LOAD_FAILED", "NO_MATCHES"].includes(response.loadType))
                 return this.stop();
             response.tracks.shift();
             let track = response.tracks[Math.floor(Math.random() * Math.floor(response.tracks.length))];

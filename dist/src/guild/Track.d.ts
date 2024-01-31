@@ -14,7 +14,7 @@ export interface trackInfo {
     title: string;
     uri: string;
     sourceName: string;
-    image?: string;
+    image: string;
     artworkUrl: string;
     isrc: string | null;
     requester?: any;
